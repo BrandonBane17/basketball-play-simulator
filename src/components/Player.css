@@ -1,0 +1,21 @@
+/* src/components/Player.css */
+.player {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  .player.red {
+    background-color: #f00; /* Red team */
+  }
+  
+  .player.blue {
+    background-color: #00f; /* Blue team */
+  }
+  
