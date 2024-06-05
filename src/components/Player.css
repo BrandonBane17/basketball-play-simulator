@@ -1,21 +1,24 @@
-/* src/components/Player.css */
 .player {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-weight: bold;
-  }
-  
-  .player.red {
-    background-color: #f00; /* Red team */
-  }
-  
-  .player.blue {
-    background-color: #00f; /* Blue team */
-  }
-  
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.player.red {
+  background-color: #f00;
+}
+
+.player.blue {
+  background-color: #00f;
+}
+
+.path {
+  pointer-events: none;
+}
