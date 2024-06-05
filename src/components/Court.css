@@ -1,7 +1,6 @@
-/* src/components/Court.css */
 .court {
     width: 800px;
-    height: 752px; /* half-court length */
+    height: 752px;
     background-color: #f4f4f4;
     border: 2px solid #000;
     margin: 20px auto;
@@ -15,12 +14,12 @@
   }
   
   .center-circle {
-    width: 192px; /* 12 ft diameter */
+    width: 192px;
     height: 192px;
     border: 2px solid #000;
     border-radius: 50%;
     position: absolute;
-    top: -13%; /* Lowered to be centered correctly */
+    top: -13%;
     left: 38%;
     border-top-color: transparent;
     border-right-color: transparent;
@@ -28,18 +27,18 @@
   }
   
   .free-throw-circle {
-    width: 192px; /* 12 ft diameter */
+    width: 192px;
     height: 192px;
     border: 2px solid #000;
     border-radius: 50%;
     position: absolute;
-    top: calc(100% - 304px); /* 19 ft from baseline */
+    top: calc(100% - 304px);
     left: 50%;
     transform: translate(-50%, -50%);
   }
   
   .three-point-line {
-    width: 720px; /* 23.75 ft radius, 47.5 ft diameter */
+    width: 720px;
     height: 450px;
     border: 2px solid #000;
     border-bottom: none;
@@ -51,8 +50,8 @@
   }
   
   .key {
-    width: 256px; /* 16 ft */
-    height: 304px; /* 19 ft from baseline to free throw line */
+    width: 256px;
+    height: 304px;
     border: 2px solid #000;
     position: absolute;
     bottom: 0;
@@ -72,11 +71,11 @@
   }
   
   .backboard {
-    width: 72px; /* 6 ft */
-    height: 4px; /* Width of backboard */
+    width: 72px;
+    height: 4px;
     background-color: #000;
     position: absolute;
-    bottom: 4.5%; /* Positioned to align with the hoop */
+    bottom: 4.5%;
     left: 50%;
     transform: translateX(-50%);
   }
