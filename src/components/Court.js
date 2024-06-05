@@ -25,9 +25,7 @@ const Court = () => {
   const [, drop] = useDrop({
     accept: 'player',
     hover: (item, monitor) => {
-      if (!isDragging) {
-        return;
-      }
+      if (!isDragging) return;
       const delta = monitor.getDifferenceFromInitialOffset();
       const newX = item.initialX + delta.x;
       const newY = item.initialY + delta.y;
@@ -65,34 +63,37 @@ const Court = () => {
     },
   });
 
-  const handleMouseDown = (player, event) => {
+  const handleMouseDown = (player) => {
     setSelectedPlayer(player.team === 'red' ? player : null);
     setIsDragging(true);
     const initialPoint = {
       x: player.x + PLAYER_SIZE / 2,
       y: player.y + PLAYER_SIZE / 2,
     };
-    if (player.team === 'red') {
+    if (player.team === 'red' && player.path.length === 0) {
       setPlayers((prevPlayers) =>
         prevPlayers.map((p) =>
           p.id === player.id
-            ? { ...p, path: [...p.path, initialPoint] }
+            ? { ...p, path: [initialPoint] }
             : p
-          )
-        );
+        )
+      );
     }
   };
 
   const handleMouseMove = (event) => {
     if (isDragging && selectedPlayer && selectedPlayer.team === 'red') {
       const courtRect = courtRef.current.getBoundingClientRect();
-      const newPoint = { x: event.clientX - courtRect.left + PLAYER_SIZE / 2, y: event.clientY - courtRect.top + PLAYER_SIZE / 2 };
+      const newX = event.clientX - courtRect.left - PLAYER_SIZE / 2;
+      const newY = event.clientY - courtRect.top - PLAYER_SIZE / 2;
       setPlayers((prevPlayers) =>
         prevPlayers.map((player) =>
           player.id === selectedPlayer.id
             ? {
                 ...player,
-                path: [...(player.path || []), newPoint],
+                x: newX,
+                y: newY,
+                path: [...(player.path || []), { x: newX + PLAYER_SIZE / 2, y: newY + PLAYER_SIZE / 2 }],
               }
             : player
         )
@@ -115,13 +116,9 @@ const Court = () => {
   };
 
   const getPathD = (path) => {
-    if (!path || path.length < 2) {
-      return '';
-    }
+    if (!path || path.length < 2) return '';
     const d = path.reduce((acc, point, i, arr) => {
-      if (i === 0) {
-        return `M ${point.x} ${point.y}`;
-      }
+      if (i === 0) return `M ${point.x} ${point.y}`;
       const prev = arr[i - 1];
       const midX = (prev.x + point.x) / 2;
       const midY = (prev.y + point.y) / 2;
